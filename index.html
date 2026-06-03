@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NUANCE — ニュアンス</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Sans+JP:wght@300;400&family=Didact+Gothic&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --off-white: #f5f3f0;
+      --warm-white: #faf9f7;
+      --gray-100: #e8e6e2;
+      --gray-300: #b8b4ae;
+      --gray-500: #7a7570;
+      --gray-700: #3d3a36;
+      --accent: #c9a96e;
+      --accent-light: #e8d5b0;
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'Noto Sans JP', sans-serif;
+      --font-sub: 'Didact Gothic', sans-serif;
+      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--warm-white);
+      color: var(--black);
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--off-white); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(250, 249, 247, 0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-100);
+      transition: background var(--transition), padding var(--transition);
+    }
+
+    nav.hero-top {
+      background: transparent;
+      backdrop-filter: none;
+      border-bottom: none;
+      padding: 1.5rem 2.5rem;
+    }
+
+    nav.scrolled {
+      background: rgba(250, 249, 247, 0.97);
+      backdrop-filter: blur(12px);
+      padding: 1rem 2.5rem;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--off-white);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    nav.scrolled .nav-logo { color: var(--black); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-sub);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--gray-700);
+      text-decoration: none;
+      transition: color var(--transition);
+      text-transform: uppercase;
+    }
+
+    nav.hero-top .nav-links a { color: rgba(245,243,240,0.8); }
+
+    nav.scrolled .nav-links a { color: var(--gray-500); }
+    .nav-links a:hover { color: var(--accent) !important; }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px; height: 1px;
+      background: var(--off-white);
+      transition: background var(--transition);
+    }
+    nav.scrolled .nav-hamburger span { background: var(--black); }
+
+    /* ===== HERO ===== */
+    #hero {
+      position: relative;
+      height: 100svh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        #1a1714 0%,
+        #2d2826 40%,
+        #3d3530 70%,
+        #2a2420 100%
+      );
+    }
+
+    /* Overlay image from Unsplash */
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      opacity: 0.55;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(10,10,10,0.75) 0%,
+        rgba(10,10,10,0.1) 50%,
+        rgba(10,10,10,0.2) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 4rem 2.5rem;
+      max-width: 560px;
+      animation: fadeUp 1.2s ease both;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-sub);
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.3s both;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 9vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--off-white);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.5s both;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent-light);
+    }
+
+    .hero-sub {
+      font-size: 0.8rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: rgba(245,243,240,0.65);
+      line-height: 1.9;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.7s both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: var(--font-sub);
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--accent);
+      padding: 1rem 2rem;
+      text-decoration: none;
+      transition: all var(--transition);
+      opacity: 0;
+      animation: fadeUp 1s ease 0.9s both;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      gap: 1.2rem;
+    }
+
+    .btn-primary svg { flex-shrink: 0; }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.5s both;
+    }
+
+    .hero-scroll span {
+      font-family: var(--font-sub);
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      color: rgba(245,243,240,0.5);
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ===== SECTION COMMON ===== */
+    section {
+      padding: 6rem 2.5rem;
+      scroll-margin-top: 70px;
+    }
+
+    .section-label {
+      font-family: var(--font-sub);
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--black);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title em { font-style: italic; }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    /* ===== CONCEPT ===== */
+    #concept {
+      background: var(--off-white);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .concept-text-wrap { max-width: 520px; }
+
+    .concept-body {
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 2;
+      color: var(--gray-700);
+      letter-spacing: 0.05em;
+    }
+
+    .concept-body p + p { margin-top: 1.2em; }
+
+    .concept-image-wrap {
+      position: relative;
+    }
+
+    .concept-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+    }
+
+    .concept-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: 1.5rem;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .concept-badge span {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      font-style: italic;
+      color: var(--warm-white);
+      line-height: 1.4;
+      letter-spacing: 0.05em;
+    }
+
+    @media (min-width: 768px) {
+      #concept {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        padding: 8rem 2.5rem;
+      }
+    }
+
+    /* ===== PRODUCTS ===== */
+    #products {
+      background: var(--warm-white);
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .products-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .products-header-left {}
+
+    .view-all {
+      font-family: var(--font-sub);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      color: var(--gray-500);
+      text-decoration: none;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--gray-300);
+      padding-bottom: 2px;
+      transition: color var(--transition), border-color var(--transition);
+    }
+
+    .view-all:hover { color: var(--accent); border-color: var(--accent); }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    }
+
+    @media (min-width: 900px) {
+      .products-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .product-card {
+      position: relative;
+      overflow: visible;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover .product-img { transform: scale(1.04); }
+    .product-card:hover .product-overlay { opacity: 1; }
+
+    .product-img-wrap {
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: var(--gray-100);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .product-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .product-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,10,10,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .overlay-btn {
+      font-family: var(--font-sub);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      color: var(--off-white);
+      text-transform: uppercase;
+      border: 1px solid rgba(245,243,240,0.6);
+      padding: 0.6rem 1.2rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .overlay-btn:hover { background: var(--accent); border-color: var(--accent); color: var(--black); }
+
+    .product-info {
+      padding: 0.8rem 0 0.2rem;
+    }
+
+    .product-tag {
+      font-family: var(--font-sub);
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .product-name {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--black);
+      margin-bottom: 0.2rem;
+    }
+
+    .product-price {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--gray-500);
+      letter-spacing: 0.05em;
+    }
+
+    .product-badge-new {
+      position: absolute;
+      top: 0.8rem;
+      left: 0.8rem;
+      font-family: var(--font-sub);
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      color: var(--warm-white);
+      background: var(--black);
+      padding: 0.3rem 0.5rem;
+      text-transform: uppercase;
+    }
+
+    /* ===== COORDINATE / LOOKBOOK ===== */
+    #coordinate {
+      background: var(--black);
+      overflow: hidden;
+      padding: 6rem 0;
+    }
+
+    .coord-header {
+      padding: 0 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .coord-header .section-title { color: var(--off-white); }
+    .coord-header .section-label { }
+
+    .coord-scroll-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      cursor: grab;
+    }
+
+    .coord-scroll-wrapper::-webkit-scrollbar { display: none; }
+
+    .coord-scroll-wrapper:active { cursor: grabbing; }
+
+    .coord-track {
+      display: flex;
+      gap: 1px;
+      width: max-content;
+      padding: 0 2.5rem;
+    }
+
+    .coord-item {
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .coord-item:nth-child(1) { width: clamp(200px, 40vw, 320px); }
+    .coord-item:nth-child(2) { width: clamp(260px, 50vw, 400px); }
+    .coord-item:nth-child(3) { width: clamp(200px, 40vw, 300px); }
+    .coord-item:nth-child(4) { width: clamp(260px, 50vw, 380px); }
+
+    .coord-img {
+      width: 100%;
+      height: clamp(380px, 70vw, 560px);
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      filter: brightness(0.9) contrast(1.05);
+      transition: filter 0.4s ease, transform 0.5s ease;
+    }
+
+    .coord-item:hover .coord-img { filter: brightness(1) contrast(1.02); transform: scale(1.02); }
+
+    .coord-label {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+    }
+
+    .coord-label span {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-style: italic;
+      color: rgba(245,243,240,0.8);
+      letter-spacing: 0.1em;
+    }
+
+    /* ===== FEATURES ===== */
+    #features {
+      background: var(--off-white);
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .features-header { margin-bottom: 4rem; }
+    .features-header .divider { margin: 1.5rem auto 0; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .features-grid { grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+    }
+
+    .feature-item {}
+
+    .feature-icon {
+      width: 52px; height: 52px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+    }
+
+    .feature-icon svg { stroke: var(--accent); }
+
+    .feature-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--black);
+      margin-bottom: 0.7rem;
+      letter-spacing: 0.05em;
+    }
+
+    .feature-desc {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--gray-500);
+      line-height: 1.9;
+      letter-spacing: 0.04em;
+    }
+
+    /* ===== CTA ===== */
+    #cta {
+      position: relative;
+      background: var(--black);
+      overflow: hidden;
+      padding: 8rem 2.5rem;
+      text-align: center;
+    }
+
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 20% 50%, rgba(201,169,110,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 80% 50%, rgba(201,169,110,0.05) 0%, transparent 70%);
+    }
+
+    .cta-content { position: relative; z-index: 1; max-width: 520px; margin: 0 auto; }
+
+    .cta-eyebrow {
+      font-family: var(--font-sub);
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 300;
+      color: var(--off-white);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .cta-title em { font-style: italic; color: var(--accent-light); }
+
+    .cta-sub {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: rgba(245,243,240,0.5);
+      line-height: 1.9;
+      letter-spacing: 0.06em;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: var(--font-sub);
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      border: 1px solid rgba(245,243,240,0.3);
+      padding: 1rem 2rem;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+
+    .btn-outline:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--black);
+    }
+
+    /* ===== FAQ ===== */
+    #faq {
+      background: var(--warm-white);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .faq-header { margin-bottom: 3rem; }
+
+    .faq-list { border-top: 1px solid var(--gray-100); }
+
+    .faq-item {
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .faq-q {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      gap: 1rem;
+    }
+
+    .faq-q-text {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--black);
+      letter-spacing: 0.03em;
+      line-height: 1.5;
+    }
+
+    .faq-icon {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      position: relative;
+    }
+
+    .faq-icon::before,
+    .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: var(--accent);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .faq-icon::before { width: 12px; height: 1px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .faq-icon::after { width: 1px; height: 12px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+    .faq-item.open .faq-icon::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
+
+    .faq-a {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .faq-item.open .faq-a { max-height: 200px; }
+
+    .faq-a-inner {
+      padding-bottom: 1.5rem;
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--gray-500);
+      line-height: 1.9;
+      letter-spacing: 0.04em;
+    }
+
+    /* ===== SNS / CONTACT ===== */
+    #sns {
+      background: var(--off-white);
+      text-align: center;
+      padding: 6rem 2.5rem;
+    }
+
+    .sns-header { margin-bottom: 3rem; }
+
+    .sns-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      max-width: 640px;
+      margin: 0 auto 3rem;
+    }
+
+    .sns-thumb {
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: var(--gray-100);
+      position: relative;
+    }
+
+    .sns-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(30%);
+      transition: filter 0.4s ease, transform 0.4s ease;
+    }
+
+    .sns-thumb:hover img { filter: grayscale(0%); transform: scale(1.05); }
+
+    .sns-link-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .sns-ig {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-sub);
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      color: var(--black);
+      text-decoration: none;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 2px;
+      transition: color var(--transition), border-color var(--transition);
+    }
+
+    .sns-ig:hover { color: var(--accent); border-color: var(--accent); }
+
+    .contact-note {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--gray-500);
+      letter-spacing: 0.08em;
+    }
+
+    .contact-note a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-light);
+      padding-bottom: 1px;
+      transition: border-color var(--transition);
+    }
+
+    .contact-note a:hover { border-color: var(--accent); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--black);
+      padding: 3rem 2.5rem 2rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 1080px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    @media (min-width: 768px) {
+      .footer-inner { flex-direction: row; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem; }
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--off-white);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-brand { min-width: 160px; }
+
+    .footer-tagline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      letter-spacing: 0.08em;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav a {
+      font-family: var(--font-sub);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--gray-500);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color var(--transition);
+    }
+
+    .footer-nav a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+      max-width: 1080px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer-copy {
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.5rem; }
+      nav.hero-top { padding: 1.25rem 1.5rem; }
+      nav.scrolled { padding: 1rem 1.5rem; }
+      .nav-logo { font-size: 1.25rem; letter-spacing: 0.18em; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      #hero { min-height: 560px; }
+      .hero-content { max-width: 100%; padding: 4rem 1.5rem 5.5rem; }
+      .cta-sub br { display: none; }
+      .btn-primary,
+      .btn-outline {
+        max-width: 100%;
+        justify-content: center;
+        text-align: center;
+        line-height: 1.5;
+        letter-spacing: 0.18em;
+      }
+      .hero-scroll { right: 1.5rem; bottom: 1.5rem; }
+      section { padding: 5rem 1.5rem; }
+      #coordinate { padding: 5rem 0; }
+      .coord-header { padding: 0 1.5rem; }
+      .coord-track { padding: 0 1.5rem; }
+      .overlay-btn {
+        max-width: calc(100% - 1rem);
+        padding: 0.55rem 0.7rem;
+        letter-spacing: 0.16em;
+        white-space: nowrap;
+      }
+      .faq-item.open .faq-a { max-height: 420px; }
+      .sns-ig {
+        max-width: 100%;
+        justify-content: center;
+        text-align: center;
+        line-height: 1.5;
+        letter-spacing: 0.16em;
+      }
+      .contact-note { line-height: 1.8; overflow-wrap: anywhere; }
+      footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .footer-nav { gap: 1rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">NUANCE</a>
+    <ul class="nav-links">
+      <li><a href="#concept">concept</a></li>
+      <li><a href="#products">collection</a></li>
+      <li><a href="#coordinate">looks</a></li>
+      <li><a href="#faq">faq</a></li>
+      <li><a href="#sns">contact</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger" aria-label="メニュー" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <img
+      class="hero-img"
+      src="assets/nuance-hero.jpg"
+      alt="NUANCEヒーロービジュアル"
+      loading="eager"
+    >
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">2025 Autumn Collection</p>
+      <h1 class="hero-title">Wear Your<br><em>Nuance</em></h1>
+      <p class="hero-sub">まとう感情が、そのままスタイルになる。<br>あなただけの、やわらかな個性を。</p>
+      <a href="#products" class="btn-primary">
+        Collection を見る
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 7H13M8 2L13 7L8 12" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>scroll</span>
+    </div>
+  </section>
+
+  <!-- CONCEPT -->
+  <section id="concept">
+    <div class="concept-text-wrap reveal">
+      <p class="section-label">Brand Concept</p>
+      <h2 class="section-title">Simple is<br><em>Everything</em></h2>
+      <div class="divider"></div>
+      <div class="concept-body">
+        <p>NUANCEは、「引き算の美学」を信じるミニマルレディースブランドです。余計なものを削ぎ落とした先に残る、本質的な美しさ。</p>
+        <p>韓国のシンプルファッションにインスパイアされながら、日本の繊細な感覚を織り込んだ、上質なベーシックを提案します。</p>
+        <p>着る人の個性を引き立て、毎日を少しだけ特別にする服。それが NUANCEのすべてです。</p>
+      </div>
+    </div>
+    <div class="concept-image-wrap reveal reveal-delay-2">
+      <img
+        class="concept-img"
+        src="assets/nuance-concept.jpg"
+        alt="ブランドコンセプトイメージ"
+        loading="lazy"
+      >
+      <div class="concept-badge">
+        <span>since<br>2023</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products">
+    <div class="products-header reveal">
+      <div class="products-header-left">
+        <p class="section-label">Collection</p>
+        <h2 class="section-title">New Arrivals</h2>
+      </div>
+      <a href="#" class="view-all">View All</a>
+    </div>
+    <div class="products-grid">
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-img-wrap">
+          <div class="product-badge-new">New</div>
+          <img class="product-img"
+            src="assets/product-01.jpg"
+            alt="Linen Wide Trousers"
+            loading="lazy">
+          <div class="product-overlay">
+            <a href="#" class="overlay-btn">Quick View</a>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-tag">Bottom</p>
+          <p class="product-name">Linen Wide Trousers</p>
+          <p class="product-price">¥12,800</p>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-2">
+        <div class="product-img-wrap">
+          <img class="product-img"
+            src="assets/product-02.jpg"
+            alt="Oversized Cotton Shirt"
+            loading="lazy">
+          <div class="product-overlay">
+            <a href="#" class="overlay-btn">Quick View</a>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-tag">Top</p>
+          <p class="product-name">Oversized Cotton Shirt</p>
+          <p class="product-price">¥9,800</p>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-3">
+        <div class="product-img-wrap">
+          <div class="product-badge-new">New</div>
+          <img class="product-img"
+            src="assets/product-03.jpg"
+            alt="Minimal Midi Skirt"
+            loading="lazy">
+          <div class="product-overlay">
+            <a href="#" class="overlay-btn">Quick View</a>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-tag">Bottom</p>
+          <p class="product-name">Minimal Midi Skirt</p>
+          <p class="product-price">¥10,500</p>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-4">
+        <div class="product-img-wrap">
+          <img class="product-img"
+            src="assets/product-04.jpg"
+            alt="Wool Blend Coat"
+            loading="lazy">
+          <div class="product-overlay">
+            <a href="#" class="overlay-btn">Quick View</a>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-tag">Outer</p>
+          <p class="product-name">Wool Blend Coat</p>
+          <p class="product-price">¥32,000</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COORDINATE -->
+  <section id="coordinate" style="padding-left:0;padding-right:0;max-width:none;">
+    <div class="coord-header reveal">
+      <p class="section-label">Looks</p>
+      <h2 class="section-title" style="color:var(--off-white)">Coordinate<br><em>Ideas</em></h2>
+    </div>
+    <div class="coord-scroll-wrapper" id="coordScroll">
+      <div class="coord-track">
+        <div class="coord-item">
+          <img class="coord-img"
+            src="assets/look-01.jpg"
+            alt="コーデ1"
+            loading="lazy">
+          <div class="coord-label"><span>Daily Minimal</span></div>
+        </div>
+        <div class="coord-item">
+          <img class="coord-img"
+            src="assets/look-02.jpg"
+            alt="コーデ2"
+            loading="lazy">
+          <div class="coord-label"><span>Mono Tone</span></div>
+        </div>
+        <div class="coord-item">
+          <img class="coord-img"
+            src="assets/look-03.jpg"
+            alt="コーデ3"
+            loading="lazy">
+          <div class="coord-label"><span>Off White</span></div>
+        </div>
+        <div class="coord-item">
+          <img class="coord-img"
+            src="assets/look-04.jpg"
+            alt="コーデ4"
+            loading="lazy">
+          <div class="coord-label"><span>Urban Chic</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="features-header reveal">
+      <p class="section-label">Why NUANCE</p>
+      <h2 class="section-title">3つのこだわり</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-item reveal reveal-delay-1">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+        </div>
+        <h3 class="feature-title">上質な素材</h3>
+        <p class="feature-desc">肌にやさしい天然素材を厳選。着るほどに馴染む、長く愛せる一着をお届けします。</p>
+      </div>
+      <div class="feature-item reveal reveal-delay-2">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 8v4l3 3"></path>
+          </svg>
+        </div>
+        <h3 class="feature-title">シーズンレス</h3>
+        <p class="feature-desc">流行に左右されないタイムレスなデザイン。季節を超えて着回せる、賢いワードローブの基本形。</p>
+      </div>
+      <div class="feature-item reveal reveal-delay-3">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          </svg>
+        </div>
+        <h3 class="feature-title">丁寧なパッケージ</h3>
+        <p class="feature-desc">開けた瞬間から特別なギフト体験を。自分へのご褒美にも、大切な人へのプレゼントにも。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="cta-bg"></div>
+    <div class="cta-content reveal">
+      <p class="cta-eyebrow">Limited Offer</p>
+      <h2 class="cta-title">初回購入<br><em>10% OFF</em></h2>
+      <p class="cta-sub">メルマガ登録で、初回限定割引クーポンをプレゼント。<br>新作情報もいち早くお届けします。</p>
+      <a href="#" class="btn-primary">今すぐ登録する
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 7H13M8 2L13 7L8 12" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="faq-header reveal">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-title">よくある<br><em>ご質問</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="faq-list" role="list">
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">送料はいくらかかりますか？</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">全国一律550円（税込）です。5,500円以上のお買い上げで送料無料になります。</div>
+        </div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">返品・交換は可能ですか？</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">商品到着後7日以内であれば、未使用・タグ付きの状態に限り返品・交換が可能です。サイズ交換は1回無料です。詳しくはご利用ガイドをご確認ください。</div>
+        </div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">どのくらいで届きますか？</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">ご注文確認後、通常1〜3営業日以内に発送いたします。お届けまでの目安は発送から1〜3日です（離島・山間部を除く）。</div>
+        </div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">サイズ感はどうですか？</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">基本的にゆとりのあるオーバーサイズ〜ルーズシルエットが多いです。各商品ページに詳細なサイズ表と着用スタッフの身長・体重を記載しています。</div>
+        </div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">ラッピング・ギフト包装はできますか？</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">はい、有料（330円）にてギフトラッピングを承っております。カートページでオプションとして選択いただけます。メッセージカードも無料でお付けできます。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SNS / CONTACT -->
+  <section id="sns">
+    <div class="sns-header reveal">
+      <p class="section-label">Instagram</p>
+      <h2 class="section-title">@nuance_official</h2>
+    </div>
+    <div class="sns-grid reveal">
+      <div class="sns-thumb">
+        <img src="assets/sns-01.jpg" alt="Instagram投稿1" loading="lazy">
+      </div>
+      <div class="sns-thumb">
+        <img src="assets/sns-02.jpg" alt="Instagram投稿2" loading="lazy">
+      </div>
+      <div class="sns-thumb">
+        <img src="assets/sns-03.jpg" alt="Instagram投稿3" loading="lazy">
+      </div>
+      <div class="sns-thumb">
+        <img src="assets/sns-04.jpg" alt="Instagram投稿4" loading="lazy">
+      </div>
+      <div class="sns-thumb">
+        <img src="assets/sns-05.jpg" alt="Instagram投稿5" loading="lazy">
+      </div>
+      <div class="sns-thumb">
+        <img src="assets/sns-06.jpg" alt="Instagram投稿6" loading="lazy">
+      </div>
+    </div>
+    <div class="sns-link-wrap reveal">
+      <a href="https://www.instagram.com/" class="sns-ig" target="_blank" rel="noopener noreferrer">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+        Follow @nuance_official
+      </a>
+      <p class="contact-note">お問い合わせは <a href="mailto:hello@nuance-brand.jp">hello@nuance-brand.jp</a> まで</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="footer-logo">NUANCE</p>
+        <p class="footer-tagline">Wear Your Nuance</p>
+      </div>
+      <div class="footer-nav" role="navigation" aria-label="フッターナビゲーション">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">特定商取引法</a>
+        <a href="#">利用規約</a>
+        <a href="#">お問い合わせ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 NUANCE. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // ===== NAVBAR SCROLL =====
+    const nav = document.getElementById('nav');
+    const hero = document.getElementById('hero');
+    function updateNav() {
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      // Only show transparent nav when we're near the very top of the hero
+      if (window.scrollY < 80 && heroBottom > 200) {
+        nav.classList.add('hero-top');
+        nav.classList.remove('scrolled');
+      } else {
+        nav.classList.remove('hero-top');
+        nav.classList.add('scrolled');
+      }
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    // ===== FAQ ACCORDION =====
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('open');
+        // close all
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // ===== SCROLL REVEAL =====
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => revealObs.observe(el));
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        reveals.forEach(el => el.classList.add('visible'));
+      }, 900);
+    });
+
+    // ===== HORIZONTAL DRAG SCROLL =====
+    const scrollWrap = document.getElementById('coordScroll');
+    let isDown = false, startX, scrollLeft;
+
+    scrollWrap.addEventListener('mousedown', e => {
+      isDown = true;
+      scrollWrap.style.cursor = 'grabbing';
+      startX = e.pageX - scrollWrap.offsetLeft;
+      scrollLeft = scrollWrap.scrollLeft;
+    });
+    scrollWrap.addEventListener('mouseleave', () => { isDown = false; scrollWrap.style.cursor = 'grab'; });
+    scrollWrap.addEventListener('mouseup', () => { isDown = false; scrollWrap.style.cursor = 'grab'; });
+    scrollWrap.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - scrollWrap.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      scrollWrap.scrollLeft = scrollLeft - walk;
+    });
+  </script>
+</body>
+</html>
