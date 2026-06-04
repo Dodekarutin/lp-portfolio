@@ -252,8 +252,8 @@ textarea {
 
 .menu__grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
 }
 
 .menu-card {
@@ -267,6 +267,7 @@ textarea {
   display: block;
   width: 100%;
   aspect-ratio: 4 / 3;
+  background: #f4ede4;
   object-fit: cover;
 }
 
