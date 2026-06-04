@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="DRIP &amp; DWELLは、日常に深く寄り添う架空のスペシャルティコーヒーカフェです。"
+    />
+    <title>DRIP &amp; DWELL | Specialty Coffee Cafe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" data-header="">
+      <a class="brand" href="#top" aria-label="DRIP &amp; DWELL トップへ">DRIP &amp; DWELL</a>
+      <button class="nav-toggle" type="button" aria-label="メニューを開閉" aria-expanded="false" data-nav-toggle="">
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" data-nav="">
+        <a href="#concept">Concept</a>
+        <a href="#menu">Menu</a>
+        <a href="#space">Space</a>
+        <a href="#access">Access</a>
+        <a class="nav-reserve" href="#contact">Reserve</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <img src="assets/hero-coffee.png" alt="暗い木製カウンターに置かれたハンドドリップコーヒー" />
+        <div class="hero__overlay"></div>
+        <div class="hero__content reveal">
+          <p class="eyebrow">Specialty Coffee &amp; Slow Hours</p>
+          <p>
+            DRIP &amp; DWELL は、豆の香りと静かな時間を味わうための小さなカフェです。
+          </p>
+          <a class="button button--primary" href="#menu">メニューを見る</a>
+        </div>
+      </section>
+
+      <section class="section concept" id="concept">
+        <div class="section__inner concept__grid">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Concept</p>
+            <h2>Daily coffee, gently tuned.</h2>
+          </div>
+          <div class="concept__body reveal">
+            <p>
+              朝の輪郭を整える一杯、午後に肩の力を抜く一杯。DRIP &amp; DWELL は、
+              産地の個性を丁寧に引き出しながら、暮らしの中で自然に戻ってこられる場所を目指します。
+            </p>
+            <p class="tagline">香りは深く、時間はゆっくり。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section menu" id="menu">
+        <div class="section__inner">
+          <div class="section-heading section-heading--center reveal">
+            <p class="eyebrow">Menu</p>
+            <h2>Signature Cups</h2>
+          </div>
+          <div class="menu__grid">
+            <article class="menu-card reveal">
+              <img class="menu-card__image" src="assets/menu-hand-drip.png" alt="陶器のカップに入ったハンドドリップコーヒー" />
+              <div class="menu-card__body">
+                <p class="menu-card__label">Hand Drip</p>
+                <h3>Seasonal Single Origin</h3>
+                <p>果実味と甘さの余韻を、浅煎りから中煎りで軽やかに。</p>
+                <span>680 yen</span>
+              </div>
+            </article>
+            <article class="menu-card reveal">
+              <img class="menu-card__image" src="assets/menu-latte.png" alt="テラコッタ色のソーサーに乗ったラテ" />
+              <div class="menu-card__body">
+                <p class="menu-card__label">Milk Coffee</p>
+                <h3>Dwell Latte</h3>
+                <p>ナッツのような香ばしさとミルクの甘さが重なる定番。</p>
+                <span>720 yen</span>
+              </div>
+            </article>
+            <article class="menu-card reveal">
+              <img class="menu-card__image" src="assets/menu-cold-brew.png" alt="氷の入ったグラスのコールドブリュー" />
+              <div class="menu-card__body">
+                <p class="menu-card__label">Cold Brew</p>
+                <h3>Midnight Brew</h3>
+                <p>12時間かけて抽出した、澄んだ苦味とカカオの後味。</p>
+                <span>760 yen</span>
+              </div>
+            </article>
+            <article class="menu-card reveal">
+              <img class="menu-card__image" src="assets/menu-espresso-tonic.png" alt="ドライシトラスを浮かべたエスプレッソトニック" />
+              <div class="menu-card__body">
+                <p class="menu-card__label">Sparkling</p>
+                <h3>Espresso Tonic</h3>
+                <p>柑橘の香りと泡の抜け感で、食後にも合う一杯。</p>
+                <span>780 yen</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section points">
+        <div class="section__inner">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Our Craft</p>
+            <h2>Bean to cup, place to stay.</h2>
+          </div>
+          <p class="points__lead reveal">
+            豆の背景、抽出の手仕事、滞在する空間まで。DRIP &amp; DWELL は、
+            一杯の前後にある体験まで丁寧に整えます。
+          </p>
+          <div class="points__grid">
+            <article class="point reveal" data-step="01">
+              <div class="point__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M7 14c-1.7-3.8 1.1-8.5 5.5-10 4.4 1.5 7.2 6.2 5.5 10-1.2 2.8-4.1 4.6-5.5 6-1.4-1.4-4.3-3.2-5.5-6Z"/><path d="M12.5 4c-.5 5.7-.4 10.3 0 16"/></svg>
+              </div>
+              <p class="point__meta">01 / Sourcing</p>
+              <h3>産地が見える豆選び</h3>
+              <p>農園や精製方法まで伝わるシングルオリジンを中心に、季節ごとの香りを小さなロットで仕入れます。</p>
+            </article>
+            <article class="point reveal" data-step="02">
+              <div class="point__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M8 3h8l-1 8H9L8 3Z"/><path d="M6 21h12"/><path d="M10 11l-2 10h8l-2-10"/></svg>
+              </div>
+              <p class="point__meta">02 / Craft</p>
+              <h3>一杯ごとに合わせる抽出</h3>
+              <p>温度、挽き目、注ぎのリズムを豆ごとに調整。注文後の数分も、香りを楽しむ体験として設計します。</p>
+            </article>
+            <article class="point reveal" data-step="03">
+              <div class="point__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 11h16v9H4z"/><path d="M7 11V8a5 5 0 0 1 10 0v3"/><path d="M9 15h6"/></svg>
+              </div>
+              <p class="point__meta">03 / Place</p>
+              <h3>地域に馴染む居場所</h3>
+              <p>木、陶器、布、低い照明を重ね、ひとりの滞在にも会話にも寄り添う席の余白をつくります。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section space" id="space">
+        <div class="section__inner">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Space</p>
+            <h2>Cafe Scenes</h2>
+          </div>
+          <div class="space__grid">
+            <figure class="space-photo space-photo--large reveal">
+              <img src="assets/cafe-interior.png" alt="木製カウンターと暖色照明のカフェ内観" />
+              <figcaption>Walnut counter / soft light</figcaption>
+            </figure>
+            <figure class="space-photo reveal">
+              <img src="assets/cafe-exterior.png" alt="夕方の小さなカフェ外観" />
+              <figcaption>Quiet street entrance</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section access" id="access">
+        <div class="section__inner access__grid">
+          <div class="access__map reveal">
+            <iframe
+              title="DRIP &amp; DWELL 周辺地図"
+              src="https://www.google.com/maps?q=Daikanyama%20Tokyo&amp;output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+          <div class="access__info reveal">
+            <p class="eyebrow">Access</p>
+            <h2>東京都渋谷区代官山町 12-8</h2>
+            <dl>
+              <div>
+                <dt>Open</dt>
+                <dd>8:00 - 19:00</dd>
+              </div>
+              <div>
+                <dt>Closed</dt>
+                <dd>Wednesday</dd>
+              </div>
+              <div>
+                <dt>Station</dt>
+                <dd>代官山駅から徒歩5分</dd>
+              </div>
+              <div>
+                <dt>Seats</dt>
+                <dd>18席 / Wi-Fi / Takeout</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="section social">
+        <div class="section__inner social__grid">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Instagram</p>
+            <h2>@dripanddwell</h2>
+            <a class="button button--ghost" href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+              フォローする
+            </a>
+          </div>
+          <div class="insta-grid reveal" aria-label="Instagram風の投稿グリッド">
+            <div class="insta-tile tile-1"></div>
+            <div class="insta-tile tile-2"></div>
+            <div class="insta-tile tile-3"></div>
+            <div class="insta-tile tile-4"></div>
+            <div class="insta-tile tile-5"></div>
+            <div class="insta-tile tile-6"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact" id="contact">
+        <div class="section__inner contact__grid">
+          <div class="contact__intro reveal">
+            <p class="eyebrow">Contact</p>
+            <h2>Takeout &amp; Private Booking</h2>
+            <p>
+              テイクアウト予約、少人数での貸し切り、撮影利用の相談はこちらから。
+              内容を確認後、通常1営業日以内にご連絡します。
+            </p>
+            <div class="accordion" data-accordion="">
+              <button type="button" aria-expanded="false">
+                貸し切り利用について
+                <span></span>
+              </button>
+              <div class="accordion__panel">
+                <p>平日18:00以降、6名から相談可能です。展示、読書会、ワークショップ用途にも対応します。</p>
+              </div>
+            </div>
+          </div>
+          <form class="contact-form reveal" data-contact-form="">
+            <label>
+              お名前
+              <input type="text" name="name" autocomplete="name" required="required" />
+            </label>
+            <label>
+              メールアドレス
+              <input type="email" name="email" autocomplete="email" required="required" />
+            </label>
+            <label>
+              ご用件
+              <select name="type" required="required">
+                <option value="">選択してください</option>
+                <option>テイクアウト予約</option>
+                <option>貸し切り問い合わせ</option>
+                <option>その他</option>
+              </select>
+            </label>
+            <label>
+              内容
+              <textarea name="message" rows="5" required="required"></textarea>
+            </label>
+            <button class="button button--primary" type="submit">送信する</button>
+            <p class="form-status" role="status" data-form-status=""></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>DRIP &amp; DWELL</p>
+      <small>Fictional cafe landing page portfolio.</small>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
