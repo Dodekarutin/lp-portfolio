@@ -89,6 +89,17 @@ textarea {
   border-radius: 999px;
 }
 
+.nav-portfolio {
+  font-size: 0.8rem;
+  color: var(--muted);
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.nav-portfolio:hover {
+  opacity: 1;
+}
+
 .nav-toggle {
   display: none;
 }

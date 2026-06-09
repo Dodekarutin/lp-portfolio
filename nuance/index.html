@@ -119,6 +119,18 @@
     }
     nav.scrolled .nav-hamburger span { background: var(--black); }
 
+    .nav-back {
+      font-family: var(--font-sub);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      color: var(--gray-500);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color var(--transition);
+    }
+    nav.hero-top .nav-back { color: rgba(245,243,240,0.6); }
+    .nav-back:hover { color: var(--accent) !important; }
+
     /* ===== HERO ===== */
     #hero {
       position: relative;
@@ -1005,6 +1017,7 @@
       <li><a href="#faq">faq</a></li>
       <li><a href="#sns">contact</a></li>
     </ul>
+    <a href="../" class="nav-back" aria-label="ポートフォリオトップへ戻る">← Portfolio</a>
     <div class="nav-hamburger" id="hamburger" aria-label="メニュー" role="button" tabindex="0">
       <span></span><span></span><span></span>
     </div>
@@ -1345,6 +1358,7 @@
         <a href="#">特定商取引法</a>
         <a href="#">利用規約</a>
         <a href="#">お問い合わせ</a>
+        <a href="../" style="color:var(--accent)">← ポートフォリオへ戻る</a>
       </div>
     </div>
     <div class="footer-bottom">
