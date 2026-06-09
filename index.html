@@ -5,22 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="架空LP制作ポートフォリオ。制作したランディングページを掲載しています。"
+      content="LP(ランディングページ)制作のポートフォリオ。スマホ対応・お問い合わせ導線まで含めて、HTML/CSS/JavaScriptで丁寧に制作します。制作実績を掲載しています。"
     />
-    <title>LP Portfolio | Dodekarutin</title>
+    <title>LP制作ポートフォリオ | Dodekarutin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
         --ink: #171412;
-        --muted: #766c63;
-        --paper: #f5f0e8;
-        --line: rgba(23, 20, 18, 0.14);
-        --coffee: #3a241b;
-        --fashion: #181716;
+        --muted: #6f675e;
+        --paper: #f7f3ec;
+        --card: #fffdf8;
+        --line: rgba(23, 20, 18, 0.12);
         --accent: #b96545;
+        --accent-dark: #9a4f33;
       }
 
       * {
         box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
@@ -28,83 +38,238 @@
         margin: 0;
         color: var(--ink);
         background: var(--paper);
-        font-family: "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
+        font-family: "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.7;
       }
 
-      main {
-        width: min(1120px, calc(100% - 40px));
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .container {
+        width: min(1080px, calc(100% - 40px));
         margin: 0 auto;
-        padding: clamp(48px, 8vw, 96px) 0;
       }
 
-      .intro {
-        display: grid;
-        gap: 14px;
-        max-width: 720px;
-        margin-bottom: clamp(36px, 6vw, 64px);
+      /* Header */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(247, 243, 236, 0.92);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
       }
 
-      .intro p {
-        margin: 0;
+      .site-header__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 0;
+      }
+
+      .brand {
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        font-size: 1rem;
+      }
+
+      .site-nav {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        font-size: 0.88rem;
+      }
+
+      .site-nav a {
+        text-decoration: none;
         color: var(--muted);
-        line-height: 1.8;
+      }
+
+      .site-nav a:hover {
+        color: var(--ink);
+      }
+
+      .site-nav .nav-cta {
+        padding: 8px 18px;
+        color: #fffaf2;
+        background: var(--ink);
+        border-radius: 999px;
+        font-weight: 700;
+      }
+
+      .site-nav .nav-cta:hover {
+        color: #fffaf2;
+        background: var(--accent-dark);
+      }
+
+      /* Hero */
+      .hero {
+        padding: clamp(56px, 9vw, 110px) 0 clamp(48px, 7vw, 88px);
+      }
+
+      .hero__grid {
+        display: grid;
+        gap: 18px;
+        max-width: 760px;
       }
 
       .eyebrow {
+        margin: 0;
         color: var(--accent);
-        font-size: 0.78rem;
+        font-size: 0.8rem;
         font-weight: 700;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
       }
 
       h1 {
         margin: 0;
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: clamp(3rem, 8vw, 6.8rem);
-        line-height: 0.98;
-        letter-spacing: 0;
+        font-size: clamp(1.9rem, 4.6vw, 3.1rem);
+        line-height: 1.35;
+        letter-spacing: 0.01em;
       }
 
+      .hero__lead {
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+      }
+
+      .hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 10px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 13px 28px;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      }
+
+      .button--primary {
+        color: #fffaf2;
+        background: var(--ink);
+      }
+
+      .button--primary:hover {
+        background: var(--accent-dark);
+        transform: translateY(-2px);
+      }
+
+      .button--ghost {
+        color: var(--ink);
+        background: transparent;
+        border: 1px solid var(--ink);
+      }
+
+      .button--ghost:hover {
+        background: rgba(23, 20, 18, 0.06);
+        transform: translateY(-2px);
+      }
+
+      .hero__notes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 18px;
+        margin: 14px 0 0;
+        padding: 0;
+        list-style: none;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .hero__notes li::before {
+        content: "✓";
+        margin-right: 6px;
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      /* Sections */
+      .section {
+        padding: clamp(48px, 7vw, 88px) 0;
+      }
+
+      .section--alt {
+        background: #f1ebe1;
+      }
+
+      .section-heading {
+        display: grid;
+        gap: 8px;
+        margin-bottom: clamp(28px, 4.5vw, 44px);
+      }
+
+      h2 {
+        margin: 0;
+        font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+        line-height: 1.4;
+      }
+
+      .section-heading p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      /* Works */
       .works {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 22px;
+        gap: 26px;
       }
 
       .work-card {
+        display: flex;
+        flex-direction: column;
         overflow: hidden;
-        color: inherit;
-        background: #fffaf2;
+        background: var(--card);
         border: 1px solid var(--line);
-        border-radius: 10px;
-        box-shadow: 0 24px 60px rgba(23, 20, 18, 0.08);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .work-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 30px 70px rgba(23, 20, 18, 0.14);
+        border-radius: 14px;
+        box-shadow: 0 18px 44px rgba(23, 20, 18, 0.08);
       }
 
       .work-card__image {
-        height: clamp(230px, 28vw, 340px);
+        position: relative;
+        display: block;
+        height: clamp(210px, 26vw, 300px);
         background-position: center;
         background-size: cover;
+        transition: opacity 0.2s ease;
+      }
+
+      .work-card__image:hover {
+        opacity: 0.92;
       }
 
       .work-card--fashion .work-card__image {
-        background-image: linear-gradient(rgba(24, 23, 22, 0.1), rgba(24, 23, 22, 0.36)), url("nuance/assets/nuance-hero.jpg");
+        background-image: linear-gradient(rgba(24, 23, 22, 0.08), rgba(24, 23, 22, 0.3)), url("nuance/assets/nuance-hero.jpg");
       }
 
       .work-card--coffee .work-card__image {
-        background-image: linear-gradient(rgba(58, 36, 27, 0.12), rgba(58, 36, 27, 0.42)), url("drip-dwell/assets/hero-coffee.png");
+        background-image: linear-gradient(rgba(58, 36, 27, 0.1), rgba(58, 36, 27, 0.36)), url("drip-dwell/assets/hero-coffee.png");
       }
 
       .work-card__body {
         display: grid;
-        gap: 12px;
-        padding: 24px;
+        gap: 14px;
+        padding: 26px;
       }
 
       .work-card__meta {
@@ -112,67 +277,429 @@
         color: var(--accent);
         font-size: 0.75rem;
         font-weight: 700;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
       }
 
-      .work-card h2 {
+      .work-card h3 {
         margin: 0;
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: clamp(1.8rem, 4vw, 3rem);
-        line-height: 1;
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        line-height: 1.1;
+      }
+
+      .work-card__desc {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .work-card__points {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 6px;
+        font-size: 0.86rem;
+        color: var(--muted);
+      }
+
+      .work-card__points li::before {
+        content: "・";
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .work-card__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tag {
+        padding: 4px 12px;
+        background: rgba(185, 101, 69, 0.1);
+        border-radius: 999px;
+        color: var(--accent-dark);
+        font-size: 0.76rem;
+        font-weight: 500;
       }
 
       .work-card__link {
         display: inline-flex;
         width: fit-content;
-        margin-top: 2px;
-        padding: 10px 16px;
+        margin-top: 4px;
+        padding: 11px 24px;
         color: #fffaf2;
         background: var(--ink);
         border-radius: 999px;
-        font-size: 0.9rem;
+        font-size: 0.88rem;
         font-weight: 700;
+        text-decoration: none;
+        transition: background 0.2s ease;
+      }
+
+      .work-card__link:hover {
+        background: var(--accent-dark);
+      }
+
+      .works-note {
+        margin: 22px 0 0;
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      /* Services */
+      .services {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .service {
+        display: grid;
+        gap: 10px;
+        padding: 24px 22px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+      }
+
+      .service__icon {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        background: rgba(185, 101, 69, 0.12);
+        border-radius: 10px;
+      }
+
+      .service__icon svg {
+        width: 22px;
+        height: 22px;
+        fill: none;
+        stroke: var(--accent-dark);
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .service h3 {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .service p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      /* Flow */
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+        counter-reset: step;
+      }
+
+      .flow-step {
+        position: relative;
+        display: grid;
+        gap: 8px;
+        padding: 24px 22px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+      }
+
+      .flow-step__num {
+        margin: 0;
+        color: var(--accent);
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      .flow-step h3 {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .flow-step p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .flow-note {
+        margin: 22px 0 0;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      /* Contact */
+      .contact {
+        text-align: center;
+      }
+
+      .contact .section-heading {
+        justify-items: center;
+      }
+
+      .contact__lead {
+        max-width: 560px;
+        margin: 0 auto 26px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .contact__mail {
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .contact__mail a {
+        color: var(--accent-dark);
+        font-weight: 500;
+      }
+
+      /* Footer */
+      .site-footer {
+        padding: 28px 0;
+        border-top: 1px solid var(--line);
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .site-footer p {
+        margin: 0;
+      }
+
+      @media (max-width: 900px) {
+        .services,
+        .flow {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
       }
 
       @media (max-width: 760px) {
-        main {
-          width: min(100% - 28px, 1120px);
-          padding-top: 40px;
+        .container {
+          width: min(100% - 28px, 1080px);
+        }
+
+        .site-nav {
+          gap: 14px;
+          font-size: 0.82rem;
+        }
+
+        .site-nav .nav-hide-sp {
+          display: none;
         }
 
         .works {
           grid-template-columns: 1fr;
         }
       }
+
+      @media (max-width: 520px) {
+        .services,
+        .flow {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
   </head>
   <body>
-    <main>
-      <section class="intro" aria-labelledby="page-title">
-        <p class="eyebrow">Landing Page Portfolio</p>
-        <h1 id="page-title">LP Portfolio</h1>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand" href="#top">Dodekarutin</a>
+        <nav class="site-nav" aria-label="ページ内ナビゲーション">
+          <a class="nav-hide-sp" href="#works">制作実績</a>
+          <a class="nav-hide-sp" href="#services">できること</a>
+          <a class="nav-hide-sp" href="#flow">制作の流れ</a>
+          <a class="nav-cta" href="#contact">お問い合わせ</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero__grid">
+          <p class="eyebrow">Landing Page Portfolio</p>
+          <h1>伝わるデザインと、迷わせない導線。<br />成果につながるLPを制作します。</h1>
+          <p class="hero__lead">
+            ヒアリングから設計・デザイン・コーディング・公開まで、ワンストップで対応。
+            スマホ表示・お問い合わせ導線まで丁寧に作り込みます。
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#works">制作実績を見る</a>
+            <a class="button button--ghost" href="#contact">相談してみる</a>
+          </div>
+          <ul class="hero__notes">
+            <li>スマホ・タブレット対応</li>
+            <li>修正のやり取りも丁寧に</li>
+            <li>お見積り無料</li>
+          </ul>
+        </div>
       </section>
 
-      <section class="works" aria-label="制作LP一覧">
-        <a class="work-card work-card--fashion" href="nuance/">
-          <div class="work-card__image" aria-hidden="true"></div>
-          <div class="work-card__body">
-            <p class="work-card__meta">Fashion LP</p>
-            <h2>NUANCE</h2>
-            <span class="work-card__link">見る</span>
+      <section class="section section--alt" id="works">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Works</p>
+            <h2>制作実績</h2>
+            <p>実際にブラウザで動くページをご覧いただけます。スマホからもご確認ください。</p>
           </div>
-        </a>
+          <div class="works">
+            <article class="work-card work-card--fashion">
+              <a class="work-card__image" href="nuance/" aria-label="NUANCEのLPを見る"></a>
+              <div class="work-card__body">
+                <p class="work-card__meta">Fashion Brand LP</p>
+                <h3>NUANCE</h3>
+                <p class="work-card__desc">
+                  ミニマルなアパレルブランドのLP。世界観を崩さずに、商品から購入導線までを自然につなぐ構成にしました。
+                </p>
+                <ul class="work-card__points">
+                  <li>商品一覧・コーディネート提案のセクション設計</li>
+                  <li>初回購入オファーへ誘導するCTA配置</li>
+                  <li>FAQで購入前の不安を解消</li>
+                </ul>
+                <div class="work-card__tags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">レスポンシブ</span>
+                </div>
+                <a class="work-card__link" href="nuance/">ページを見る →</a>
+              </div>
+            </article>
 
-        <a class="work-card work-card--coffee" href="drip-dwell/">
-          <div class="work-card__image" aria-hidden="true"></div>
-          <div class="work-card__body">
-            <p class="work-card__meta">Cafe LP</p>
-            <h2>DRIP &amp; DWELL</h2>
-            <span class="work-card__link">見る</span>
+            <article class="work-card work-card--coffee">
+              <a class="work-card__image" href="drip-dwell/" aria-label="DRIP &amp; DWELLのLPを見る"></a>
+              <div class="work-card__body">
+                <p class="work-card__meta">Cafe LP</p>
+                <h3>DRIP &amp; DWELL</h3>
+                <p class="work-card__desc">
+                  スペシャルティコーヒーカフェのLP。来店につながる情報(メニュー・アクセス・予約)を迷わず届ける構成です。
+                </p>
+                <ul class="work-card__points">
+                  <li>メニュー・店内写真・アクセス地図を掲載</li>
+                  <li>予約・問い合わせフォームと開閉式FAQ</li>
+                  <li>スクロールに合わせた表示アニメーション</li>
+                </ul>
+                <div class="work-card__tags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">レスポンシブ</span>
+                </div>
+                <a class="work-card__link" href="drip-dwell/">ページを見る →</a>
+              </div>
+            </article>
           </div>
-        </a>
+          <p class="works-note">
+            ※ いずれも架空ブランドを題材にした自主制作です。構成・デザイン・コーディングをすべて担当しています。
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Services</p>
+            <h2>できること</h2>
+            <p>「ページを作って終わり」ではなく、目的に合わせた設計からお手伝いします。</p>
+          </div>
+          <div class="services">
+            <article class="service">
+              <div class="service__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2" /><path d="M10 18h4" /></svg>
+              </div>
+              <h3>スマホ対応デザイン</h3>
+              <p>閲覧の多くはスマホから。どの画面サイズでも読みやすく、操作しやすい表示に整えます。</p>
+            </article>
+            <article class="service">
+              <div class="service__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 19V5" /><path d="M4 19h16" /><path d="M8 15l4-6 3 3 4-7" /></svg>
+              </div>
+              <h3>成果から逆算した構成</h3>
+              <p>問い合わせ・予約・購入など、ページの目的を最初に確認し、そこへ向かう流れを設計します。</p>
+            </article>
+            <article class="service">
+              <div class="service__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M13 3 4 14h6l-1 7 9-11h-6l1-7Z" /></svg>
+              </div>
+              <h3>表示速度・基本SEO</h3>
+              <p>画像の最適化や見出し構造の整理など、表示の速さと検索エンジンへの基本対応を行います。</p>
+            </article>
+            <article class="service">
+              <div class="service__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9" /><path d="M9 12l2.5 2.5L21 5" /></svg>
+              </div>
+              <h3>公開後の修正対応</h3>
+              <p>納品して終わりではなく、公開後の文言修正や画像差し替えなどのご相談にも対応します。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt" id="flow">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Flow</p>
+            <h2>制作の流れ</h2>
+            <p>初めてのご依頼でも進め方が分かるよう、各ステップでこまめにご連絡します。</p>
+          </div>
+          <div class="flow">
+            <article class="flow-step">
+              <p class="flow-step__num">01</p>
+              <h3>ヒアリング</h3>
+              <p>ページの目的、ターゲット、参考にしたいサイトなどを伺います。チャットのみでも対応可能です。</p>
+            </article>
+            <article class="flow-step">
+              <p class="flow-step__num">02</p>
+              <h3>構成・デザイン</h3>
+              <p>掲載内容を整理して構成案を作成し、デザインの方向性をすり合わせます。</p>
+            </article>
+            <article class="flow-step">
+              <p class="flow-step__num">03</p>
+              <h3>コーディング</h3>
+              <p>HTML/CSS/JavaScriptで実装します。実際のページをご確認いただきながら調整します。</p>
+            </article>
+            <article class="flow-step">
+              <p class="flow-step__num">04</p>
+              <h3>公開・納品</h3>
+              <p>サーバーへの公開作業まで対応します。公開後の軽微な修正もご相談ください。</p>
+            </article>
+          </div>
+          <p class="flow-note">納期の目安:LP1ページ 約1〜2週間(内容・ボリュームにより変動します)</p>
+        </div>
+      </section>
+
+      <section class="section contact" id="contact">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Contact</p>
+            <h2>お問い合わせ</h2>
+          </div>
+          <p class="contact__lead">
+            「こんなページは作れる?」といった段階のご相談も歓迎です。
+            内容を確認のうえ、通常1営業日以内にご返信します。お見積りは無料です。
+          </p>
+          <a class="button button--primary" href="mailto:allmasterleo@gmail.com?subject=%E3%80%90LP%E5%88%B6%E4%BD%9C%E3%80%91%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B">メールで相談する</a>
+          <p class="contact__mail">
+            メール:<a href="mailto:allmasterleo@gmail.com">allmasterleo@gmail.com</a>
+          </p>
+        </div>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Dodekarutin — LP Portfolio</p>
+    </footer>
   </body>
 </html>
