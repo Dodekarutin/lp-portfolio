@@ -32,101 +32,109 @@
       </nav>
     </header>
 
-    <nav class="deck-nav" data-deck-nav="" aria-label="セクションナビゲーション"></nav>
-    <div class="deck-counter" aria-hidden="true">
-      <span data-counter-current="">01</span>
-      <i></i>
-      <span data-counter-total="">08</span>
-    </div>
-
-    <main class="deck" data-deck="">
-      <section class="panel panel--hero" id="top" data-panel="" data-theme="dark" data-title="Top">
-        <div class="hero-bg">
-          <img src="assets/hero-coffee.png" alt="暗い木製カウンターに置かれたハンドドリップコーヒー" />
-        </div>
-        <div class="hero-overlay"></div>
-        <div class="panel__inner hero__content">
-          <p class="eyebrow anim">Specialty Coffee &amp; Slow Hours</p>
-          <h1 class="anim" style="--d: 1">Deep aroma,<br />slow hours.</h1>
-          <p class="hero__lead anim" style="--d: 2">
-            DRIP &amp; DWELL は、豆の香りと静かな時間を味わうための小さなカフェです。
-          </p>
-          <a class="button button--primary anim" style="--d: 3" href="#menu">メニューを見る</a>
-        </div>
-        <div class="scroll-hint anim" style="--d: 4">
-          <span></span>
-          Scroll
-        </div>
-      </section>
-
-      <section class="panel panel--concept" id="concept" data-panel="" data-theme="light" data-title="Concept">
-        <div class="panel__inner concept__grid">
-          <div class="section-heading">
-            <p class="eyebrow anim">Concept</p>
-            <h2 class="anim" style="--d: 1">Daily coffee,<br />gently tuned.</h2>
-          </div>
-          <div class="concept__body">
-            <p class="anim" style="--d: 2">
-              朝の輪郭を整える一杯、午後に肩の力を抜く一杯。DRIP &amp; DWELL は、
-              産地の個性を丁寧に引き出しながら、暮らしの中で自然に戻ってこられる場所を目指します。
+    <main id="top">
+      <!-- ヒーロー: スクロールで背景がズーム・暗転しながらテキストが抜けていく -->
+      <section class="scene scene--hero" data-scene="">
+        <div class="scene__sticky">
+          <img class="scene__bg" src="assets/hero-coffee.png" alt="暗い木製カウンターに置かれたハンドドリップコーヒー" />
+          <div class="scene__tint"></div>
+          <div class="scene__veil"></div>
+          <div class="hero__content">
+            <p class="eyebrow">Specialty Coffee &amp; Slow Hours</p>
+            <h1>Deep aroma,<br />slow hours.</h1>
+            <p class="hero__lead">
+              DRIP &amp; DWELL は、豆の香りと静かな時間を味わうための小さなカフェです。
             </p>
-            <p class="tagline anim" style="--d: 3">香りは深く、時間はゆっくり。</p>
+            <a class="button button--primary" href="#menu">メニューを見る</a>
+          </div>
+          <div class="scroll-hint">
+            <span></span>
+            Scroll
           </div>
         </div>
       </section>
 
-      <section class="panel panel--menu" id="menu" data-panel="" data-theme="dark" data-title="Menu">
-        <div class="panel__inner">
-          <div class="section-heading section-heading--center">
-            <p class="eyebrow anim">Menu</p>
-            <h2 class="anim" style="--d: 1">Signature Cups</h2>
+      <!-- コンセプト: 大きなステートメント -->
+      <section class="statement" id="concept">
+        <div class="statement__inner">
+          <p class="eyebrow anim">Concept</p>
+          <h2 class="anim" style="--d: 1">Daily coffee,<br />gently tuned.</h2>
+          <p class="statement__body anim" style="--d: 2">
+            朝の輪郭を整える一杯、午後に肩の力を抜く一杯。DRIP &amp; DWELL は、
+            産地の個性を丁寧に引き出しながら、暮らしの中で自然に戻ってこられる場所を目指します。
+          </p>
+          <p class="statement__tag anim" style="--d: 3">香りは深く、時間はゆっくり。</p>
+        </div>
+      </section>
+
+      <!-- ピン留めズームシーン: スクロールで写真が引き、見出しが浮かぶ -->
+      <section class="scene scene--brew" data-scene="">
+        <div class="scene__sticky">
+          <img class="scene__bg" src="assets/menu-drinks.png" alt="カウンターに並んだシグネチャードリンク" />
+          <div class="scene__tint"></div>
+          <div class="scene__caption">
+            <p class="eyebrow">Menu</p>
+            <h2>Signature Cups</h2>
+            <p>豆の個性に合わせて設計した、6つの定番。</p>
           </div>
-          <div class="menu-cards">
-            <article class="menu-card anim" style="--d: 2">
+        </div>
+      </section>
+
+      <!-- メニュー -->
+      <section class="section menu" id="menu">
+        <div class="section__inner">
+          <div class="menu__grid">
+            <article class="menu-card anim">
               <img src="assets/menu-simple-hand-drip.png" alt="シンプルな背景のハンドドリップコーヒー" />
               <div class="menu-card__body">
                 <p class="menu-card__label">Hand Drip</p>
                 <h3>Seasonal Single Origin</h3>
+                <p>果実味と甘さの余韻を、浅煎りから中煎りで軽やかに。</p>
                 <span>680 yen</span>
               </div>
             </article>
-            <article class="menu-card anim" style="--d: 3">
+            <article class="menu-card anim" style="--d: 1">
               <img src="assets/menu-simple-latte.png" alt="シンプルな背景のカフェラテ" />
               <div class="menu-card__body">
                 <p class="menu-card__label">Milk Coffee</p>
                 <h3>Dwell Latte</h3>
+                <p>ナッツのような香ばしさとミルクの甘さが重なる定番。</p>
                 <span>720 yen</span>
               </div>
             </article>
-            <article class="menu-card anim" style="--d: 4">
+            <article class="menu-card anim" style="--d: 2">
               <img src="assets/menu-simple-cold-brew.png" alt="シンプルな背景のアイスコールドブリュー" />
               <div class="menu-card__body">
                 <p class="menu-card__label">Cold Brew</p>
                 <h3>Midnight Brew</h3>
+                <p>12時間かけて抽出した、澄んだ苦味とカカオの後味。</p>
                 <span>760 yen</span>
               </div>
             </article>
-            <article class="menu-card anim" style="--d: 5">
+            <article class="menu-card anim">
               <img src="assets/menu-simple-espresso-tonic.png" alt="シンプルな背景のエスプレッソトニック" />
               <div class="menu-card__body">
                 <p class="menu-card__label">Sparkling</p>
                 <h3>Espresso Tonic</h3>
+                <p>柑橘の香りと泡の抜け感で、食後にも合う一杯。</p>
                 <span>780 yen</span>
               </div>
             </article>
-            <article class="menu-card anim" style="--d: 6">
+            <article class="menu-card anim" style="--d: 1">
               <img src="assets/menu-simple-mocha.png" alt="シンプルな背景のカフェモカ" />
               <div class="menu-card__body">
                 <p class="menu-card__label">Chocolate</p>
                 <h3>Cacao Mocha</h3>
+                <p>深煎りエスプレッソに、ほろ苦いカカオの丸みを重ねて。</p>
                 <span>760 yen</span>
               </div>
             </article>
-            <article class="menu-card anim" style="--d: 7">
+            <article class="menu-card anim" style="--d: 2">
               <img src="assets/menu-simple-flat-white.png" alt="シンプルな背景のオーツミルクフラットホワイト" />
               <div class="menu-card__body">
                 <p class="menu-card__label">Plant Milk</p>
                 <h3>Oat Flat White</h3>
+                <p>オーツミルクの穀物感と、きめ細かなフォームで軽やかに。</p>
                 <span>740 yen</span>
               </div>
             </article>
@@ -134,14 +142,24 @@
         </div>
       </section>
 
-      <section class="panel panel--craft" id="craft" data-panel="" data-theme="light" data-title="Craft">
-        <div class="panel__inner">
-          <div class="section-heading">
+      <!-- パララックス帯 1: 内観 -->
+      <section class="parallax" id="space" data-parallax="0.12">
+        <img src="assets/cafe-interior.png" alt="木製カウンターと暖色照明のカフェ内観" />
+        <div class="parallax__caption anim">
+          <p class="eyebrow">Space</p>
+          <h2>Walnut counter,<br />soft light.</h2>
+        </div>
+      </section>
+
+      <!-- クラフト -->
+      <section class="section points">
+        <div class="section__inner">
+          <div class="section-heading section-heading--center">
             <p class="eyebrow anim">Our Craft</p>
             <h2 class="anim" style="--d: 1">Bean to cup, place to stay.</h2>
           </div>
           <div class="points__grid">
-            <article class="point anim" style="--d: 2" data-step="01">
+            <article class="point anim" data-step="01">
               <div class="point__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M7 14c-1.7-3.8 1.1-8.5 5.5-10 4.4 1.5 7.2 6.2 5.5 10-1.2 2.8-4.1 4.6-5.5 6-1.4-1.4-4.3-3.2-5.5-6Z"/><path d="M12.5 4c-.5 5.7-.4 10.3 0 16"/></svg>
               </div>
@@ -149,7 +167,7 @@
               <h3>産地が見える豆選び</h3>
               <p>農園や精製方法まで伝わるシングルオリジンを中心に、季節ごとの香りを小さなロットで仕入れます。</p>
             </article>
-            <article class="point anim" style="--d: 3" data-step="02">
+            <article class="point anim" style="--d: 1" data-step="02">
               <div class="point__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M8 3h8l-1 8H9L8 3Z"/><path d="M6 21h12"/><path d="M10 11l-2 10h8l-2-10"/></svg>
               </div>
@@ -157,7 +175,7 @@
               <h3>一杯ごとに合わせる抽出</h3>
               <p>温度、挽き目、注ぎのリズムを豆ごとに調整。注文後の数分も、香りを楽しむ体験として設計します。</p>
             </article>
-            <article class="point anim" style="--d: 4" data-step="03">
+            <article class="point anim" style="--d: 2" data-step="03">
               <div class="point__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M4 11h16v9H4z"/><path d="M7 11V8a5 5 0 0 1 10 0v3"/><path d="M9 15h6"/></svg>
               </div>
@@ -169,28 +187,19 @@
         </div>
       </section>
 
-      <section class="panel panel--space" id="space" data-panel="" data-theme="light" data-title="Space">
-        <div class="panel__inner">
-          <div class="section-heading">
-            <p class="eyebrow anim">Space</p>
-            <h2 class="anim" style="--d: 1">Cafe Scenes</h2>
-          </div>
-          <div class="space__grid">
-            <figure class="space-photo anim" style="--d: 2">
-              <img src="assets/cafe-interior.png" alt="木製カウンターと暖色照明のカフェ内観" />
-              <figcaption>Walnut counter / soft light</figcaption>
-            </figure>
-            <figure class="space-photo anim" style="--d: 3">
-              <img src="assets/cafe-exterior.png" alt="夕方の小さなカフェ外観" />
-              <figcaption>Quiet street entrance</figcaption>
-            </figure>
-          </div>
+      <!-- パララックス帯 2: 外観 -->
+      <section class="parallax" data-parallax="0.12">
+        <img src="assets/cafe-exterior.png" alt="夕方の小さなカフェ外観" />
+        <div class="parallax__caption anim">
+          <p class="eyebrow">Find Us</p>
+          <h2>Quiet street<br />entrance.</h2>
         </div>
       </section>
 
-      <section class="panel panel--access" id="access" data-panel="" data-theme="light" data-title="Access">
-        <div class="panel__inner access__grid">
-          <div class="access__map anim" style="--d: 2">
+      <!-- アクセス -->
+      <section class="section access" id="access">
+        <div class="section__inner access__grid">
+          <div class="access__map anim">
             <iframe
               title="DRIP &amp; DWELL 周辺地図"
               src="https://www.google.com/maps?q=Daikanyama%20Tokyo&amp;output=embed"
@@ -223,8 +232,9 @@
         </div>
       </section>
 
-      <section class="panel panel--social" id="social" data-panel="" data-theme="light" data-title="Social">
-        <div class="panel__inner social__grid">
+      <!-- SNS -->
+      <section class="section social">
+        <div class="section__inner social__grid">
           <div class="section-heading">
             <p class="eyebrow anim">Instagram</p>
             <h2 class="anim" style="--d: 1">@dripanddwell</h2>
@@ -233,18 +243,19 @@
             </a>
           </div>
           <div class="insta-grid" aria-label="Instagram風の投稿グリッド">
-            <div class="insta-tile tile-1 anim" style="--d: 2"></div>
-            <div class="insta-tile tile-2 anim" style="--d: 3"></div>
-            <div class="insta-tile tile-3 anim" style="--d: 4"></div>
-            <div class="insta-tile tile-4 anim" style="--d: 5"></div>
-            <div class="insta-tile tile-5 anim" style="--d: 6"></div>
-            <div class="insta-tile tile-6 anim" style="--d: 7"></div>
+            <div class="insta-tile tile-1 anim" style="--d: 1"></div>
+            <div class="insta-tile tile-2 anim" style="--d: 2"></div>
+            <div class="insta-tile tile-3 anim" style="--d: 3"></div>
+            <div class="insta-tile tile-4 anim" style="--d: 2"></div>
+            <div class="insta-tile tile-5 anim" style="--d: 3"></div>
+            <div class="insta-tile tile-6 anim" style="--d: 4"></div>
           </div>
         </div>
       </section>
 
-      <section class="panel panel--contact" id="contact" data-panel="" data-theme="dark" data-title="Contact">
-        <div class="panel__inner contact__grid">
+      <!-- コンタクト -->
+      <section class="section contact" id="contact">
+        <div class="section__inner contact__grid">
           <div class="contact__intro">
             <p class="eyebrow anim">Contact</p>
             <h2 class="anim" style="--d: 1">Takeout &amp; Private Booking</h2>
@@ -278,18 +289,19 @@
             </label>
             <label>
               内容
-              <textarea name="message" rows="3" required="required"></textarea>
+              <textarea name="message" rows="4" required="required"></textarea>
             </label>
             <button class="button button--primary" type="submit">送信する</button>
             <p class="form-status" role="status" data-form-status=""></p>
           </form>
         </div>
-        <footer class="panel-foot">
-          <p>DRIP &amp; DWELL</p>
-          <small>Fictional cafe landing page portfolio.</small>
-        </footer>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <p>DRIP &amp; DWELL</p>
+      <small>Fictional cafe landing page portfolio.</small>
+    </footer>
 
     <script src="script.js"></script>
   </body>
